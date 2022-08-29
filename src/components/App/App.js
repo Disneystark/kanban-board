@@ -11,6 +11,13 @@ import {
   LIST_READY,
 } from "../../const/listTypes";
 
+const generateNewId = (taskList) => {
+  const biggestId = taskList.reduce((acc, item) => {
+    return item.id > acc ? item.id : acc;
+  }, 0);
+  return biggestId + 1;
+};
+
 function App() {
   const [taskList, setTaskList] = useState([
     {
@@ -39,6 +46,18 @@ function App() {
     },
   ]);
 
+  const addNewTask = (taskName) => {
+    const id = generateNewId(taskList);
+    const newTask = {
+      id: id,
+      name: taskName,
+      description: "",
+      listType: LIST_BACKLOG,
+    };
+
+    setTaskList([...taskList, newTask]);
+  };
+
   return (
     <div className={styles.app}>
       <Header />
@@ -47,6 +66,7 @@ function App() {
           title="Backlog"
           taskList={taskList.filter((item) => item.listType === LIST_BACKLOG)}
           listType={LIST_BACKLOG}
+          addNewTask={addNewTask}
         />
         <TaskList
           title="Ready"

@@ -21,13 +21,23 @@ export const TaskList = (props) => {
     setInputShown(false);
   };
 
+  const handleSubmitClick = () => {
+    props.addNewTask(inputValue);
+    setInputValue("");
+    setInputShown(false);
+  };
+
   return (
     <div className={styles.task_list}>
       <div className={styles.task_list_inner}>
         <div className={styles.list_main_heading}> {props.title}</div>
 
         {props.taskList.map((item) => {
-          return <div className={styles.list_task_main}>{item.name}</div>;
+          return (
+            <div key={item.id} className={styles.list_task_main}>
+              {item.name}
+            </div>
+          );
         })}
 
         {isInputShown && (
@@ -47,7 +57,9 @@ export const TaskList = (props) => {
         {isInputShown && <button onClick={handleCancelClick}>Cancel</button>}
 
         {isInputShown && inputValue.length > 0 && (
-          <button className={styles.button_submit}>Submit</button>
+          <button onClick={handleSubmitClick} className={styles.button_submit}>
+            Submit
+          </button>
         )}
       </div>
     </div>
