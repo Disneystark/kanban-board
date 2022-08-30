@@ -92,3 +92,11 @@
   height: 28px;
   border-radius: 5px;
 }
+
+.select_task {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 5px;
+  margin-top: 15px;
+}

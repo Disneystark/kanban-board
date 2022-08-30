@@ -6,6 +6,8 @@ export const TaskList = (props) => {
   const [isInputShown, setInputShown] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  const [isSelectShown, setSelectShown] = useState(false);
+
   const handleInputChange = (event) => {
     const value = event.target.value;
     setInputValue(value);
@@ -14,11 +16,14 @@ export const TaskList = (props) => {
   const handleAddClick = () => {
     if (props.listType === LIST_BACKLOG) {
       setInputShown(true);
+    } else {
+      setSelectShown(true);
     }
   };
 
   const handleCancelClick = () => {
     setInputShown(false);
+    setSelectShown(false);
   };
 
   const handleSubmitClick = () => {
@@ -50,7 +55,15 @@ export const TaskList = (props) => {
           />
         )}
 
-        {!isInputShown && (
+        {isSelectShown && (
+          <select className={styles.select_task}>
+            {props.taskListToAdd.map((item) => {
+              return <option key={item.id}>{item.name}</option>;
+            })}
+          </select>
+        )}
+
+        {!isInputShown && !isSelectShown && (
           <button onClick={handleAddClick} className={styles.button_add}>
             + Add card
           </button>
@@ -61,7 +74,7 @@ export const TaskList = (props) => {
           </button>
         )}
 
-        {isInputShown && (
+        {(isInputShown || isSelectShown) && (
           <button className={styles.button_cancel} onClick={handleCancelClick}>
             Cancel
           </button>

@@ -58,33 +58,47 @@ function App() {
     setTaskList([...taskList, newTask]);
   };
 
+  const taskListBacklog = taskList.filter(
+    (item) => item.listType === LIST_BACKLOG
+  );
+
+  const taskListReady = taskList.filter((item) => item.listType === LIST_READY);
+
+  const taskListInProgress = taskList.filter(
+    (item) => item.listType === LIST_IN_PROGRESS
+  );
+
+  const taskListFinished = taskList.filter(
+    (item) => item.listType === LIST_FINISHED
+  );
   return (
     <div className={styles.app}>
       <Header />
       <Main>
         <TaskList
           title="Backlog"
-          taskList={taskList.filter((item) => item.listType === LIST_BACKLOG)}
+          taskList={taskListBacklog}
           listType={LIST_BACKLOG}
           addNewTask={addNewTask}
         />
         <TaskList
           title="Ready"
-          taskList={taskList.filter((item) => item.listType === LIST_READY)}
+          taskList={taskListReady}
           listType={LIST_READY}
+          taskListToAdd={taskListBacklog}
         />
         <TaskList
           //<-- пропсы --props!!!
           title="in Progress"
-          taskList={taskList.filter(
-            (item) => item.listType === LIST_IN_PROGRESS
-          )}
+          taskList={taskListInProgress}
           listType={LIST_IN_PROGRESS}
+          taskListToAdd={taskListReady}
         />
         <TaskList
           title="Finished"
-          taskList={taskList.filter((item) => item.listType === LIST_FINISHED)}
+          taskList={taskListFinished}
           listType={LIST_FINISHED}
+          taskListToAdd={taskListInProgress}
         />
       </Main>
       <Footer></Footer>
