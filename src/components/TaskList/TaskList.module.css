@@ -59,8 +59,11 @@
   background: #0079bf;
   border-radius: 5px;
   border: 0;
-
   color: #ffffff;
+  cursor: pointer;
+  width: 102px;
+  height: 29px;
+  margin-top: 12px;
 }
 
 .input_Task {
@@ -74,4 +77,18 @@
 }
 .list_task_main + .input_Task {
   margin-top: 15px;
+}
+
+.button_cancel {
+  border: 0px;
+  height: 28px;
+  background: #ebecf0;
+  color: #5e6c84;
+  cursor: pointer;
+}
+
+.button_cancel:hover {
+  color: #0067a3;
+  height: 28px;
+  border-radius: 5px;
 }

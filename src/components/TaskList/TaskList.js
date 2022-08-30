@@ -22,9 +22,11 @@ export const TaskList = (props) => {
   };
 
   const handleSubmitClick = () => {
-    props.addNewTask(inputValue);
-    setInputValue("");
-    setInputShown(false);
+    if (inputValue.trim() !== "") {
+      props.addNewTask(inputValue);
+      setInputValue("");
+      setInputShown(false);
+    }
   };
 
   return (
@@ -53,12 +55,15 @@ export const TaskList = (props) => {
             + Add card
           </button>
         )}
-
-        {isInputShown && <button onClick={handleCancelClick}>Cancel</button>}
-
         {isInputShown && inputValue.length > 0 && (
           <button onClick={handleSubmitClick} className={styles.button_submit}>
             Submit
+          </button>
+        )}
+
+        {isInputShown && (
+          <button className={styles.button_cancel} onClick={handleCancelClick}>
+            Cancel
           </button>
         )}
       </div>
