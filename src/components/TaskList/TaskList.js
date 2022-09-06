@@ -68,56 +68,64 @@ export const TaskList = (props) => {
   return (
     <div className={styles.task_list}>
       <div className={styles.task_list_inner}>
-        <div className={styles.list_main_heading}> {props.title}</div>
+        <div className={styles.task_list_scrollable}>
+          <div className={styles.list_main_heading}> {props.title}</div>
 
-        {props.taskList.map((item) => {
-          return (
-            <div key={item.id} className={styles.list_task_main}>
-              {item.name}
-            </div>
-          );
-        })}
+          {props.taskList.map((item) => {
+            return (
+              <div key={item.id} className={styles.list_task_main}>
+                {item.name}
+              </div>
+            );
+          })}
 
-        {isInputShown && (
-          <input
-            value={inputValue}
-            onChange={handleInputChange}
-            className={styles.input_Task}
-          />
-        )}
+          {isInputShown && (
+            <input
+              value={inputValue}
+              onChange={handleInputChange}
+              className={styles.input_Task}
+            />
+          )}
 
-        {isSelectShown && (
-          <select
-            value={selectedItemId}
-            onChange={handleSelectChange}
-            className={styles.select_task}
-          >
-            {props.taskListToAdd.map((item) => {
-              return (
-                <option value={item.id} key={item.id}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
-        )}
+          {isSelectShown && (
+            <select
+              value={selectedItemId}
+              onChange={handleSelectChange}
+              className={styles.select_task}
+            >
+              {props.taskListToAdd.map((item) => {
+                return (
+                  <option value={item.id} key={item.id}>
+                    {item.name}
+                  </option>
+                );
+              })}
+            </select>
+          )}
 
-        {!isInputShown && !isSelectShown && (
-          <button onClick={handleAddClick} className={styles.button_add}>
-            + Add card
-          </button>
-        )}
-        {((isInputShown && inputValue.length > 0) || isSelectShown) && (
-          <button onClick={handleSubmitClick} className={styles.button_submit}>
-            Submit
-          </button>
-        )}
+          {!isInputShown && !isSelectShown && (
+            <button onClick={handleAddClick} className={styles.button_add}>
+              + Add card
+            </button>
+          )}
+          {((isInputShown && inputValue.length > 0) || isSelectShown) && (
+            <button
+              onClick={handleSubmitClick}
+              className={styles.button_submit}
+            >
+              Submit
+            </button>
+          )}
 
-        {(isInputShown || isSelectShown) && (
-          <button className={styles.button_cancel} onClick={handleCancelClick}>
-            Cancel
-          </button>
-        )}
+          {(isInputShown || isSelectShown) && (
+            <button
+              className={styles.button_cancel}
+              onClick={handleCancelClick}
+            >
+              Cancel
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
