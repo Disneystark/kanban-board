@@ -46,6 +46,19 @@ function App() {
     },
   ]);
 
+  const setTaskListType = (id, listType) => {
+    const task = taskList.find((item) => id === item.id);
+    const updatedTask = {
+      ...task,
+      listType: listType,
+    };
+    const filteredTaskList = taskList.filter((item) => id !== item.id);
+
+    const updatedTaskList = [...filteredTaskList, updatedTask];
+
+    setTaskList(updatedTaskList);
+  };
+
   const addNewTask = (taskName) => {
     const id = generateNewId(taskList);
     const newTask = {
@@ -86,6 +99,7 @@ function App() {
           taskList={taskListReady}
           listType={LIST_READY}
           taskListToAdd={taskListBacklog}
+          setTaskListType={setTaskListType}
         />
         <TaskList
           //<-- пропсы --props!!!
@@ -93,12 +107,14 @@ function App() {
           taskList={taskListInProgress}
           listType={LIST_IN_PROGRESS}
           taskListToAdd={taskListReady}
+          setTaskListType={setTaskListType}
         />
         <TaskList
           title="Finished"
           taskList={taskListFinished}
           listType={LIST_FINISHED}
           taskListToAdd={taskListInProgress}
+          setTaskListType={setTaskListType}
         />
       </Main>
       <Footer></Footer>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./TaskList.module.css";
 import { LIST_BACKLOG } from "../../const/listTypes";
 
@@ -7,6 +7,28 @@ export const TaskList = (props) => {
   const [inputValue, setInputValue] = useState("");
 
   const [isSelectShown, setSelectShown] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState(
+    props.taskListToAdd && props.taskListToAdd.length > 0
+      ? props.taskListToAdd[0].id
+      : undefined
+  );
+
+  // useEffect(() => {
+  // console.log(selectedItem); //для отладки
+  // }, [selectedItem]);// подписка на переменные,при изменении значений.
+
+  useEffect(() => {
+    setSelectedItemId(
+      props.taskListToAdd && props.taskListToAdd.length > 0
+        ? props.taskListToAdd[0].id
+        : undefined
+    );
+  }, [props.taskListToAdd]);
+
+  const handleSelectChange = (event) => {
+    const value = Number(event.target.value);
+    setSelectedItemId(value);
+  };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -27,10 +49,19 @@ export const TaskList = (props) => {
   };
 
   const handleSubmitClick = () => {
-    if (inputValue.trim() !== "") {
-      props.addNewTask(inputValue);
-      setInputValue("");
-      setInputShown(false);
+    if (props.listType === LIST_BACKLOG) {
+      if (inputValue.trim() !== "") {
+        props.addNewTask(inputValue);
+        setInputValue("");
+        setInputShown(false);
+      }
+    } else {
+      setSelectShown(false);
+      if (selectedItemId === undefined) {
+        return;
+      }
+
+      props.setTaskListType(selectedItemId, props.listType);
     }
   };
 
@@ -56,9 +87,17 @@ export const TaskList = (props) => {
         )}
 
         {isSelectShown && (
-          <select className={styles.select_task}>
+          <select
+            value={selectedItemId}
+            onChange={handleSelectChange}
+            className={styles.select_task}
+          >
             {props.taskListToAdd.map((item) => {
-              return <option key={item.id}>{item.name}</option>;
+              return (
+                <option value={item.id} key={item.id}>
+                  {item.name}
+                </option>
+              );
             })}
           </select>
         )}
@@ -68,7 +107,7 @@ export const TaskList = (props) => {
             + Add card
           </button>
         )}
-        {isInputShown && inputValue.length > 0 && (
+        {((isInputShown && inputValue.length > 0) || isSelectShown) && (
           <button onClick={handleSubmitClick} className={styles.button_submit}>
             Submit
           </button>

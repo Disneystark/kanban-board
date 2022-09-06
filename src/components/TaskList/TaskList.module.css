@@ -94,9 +94,17 @@
 }
 
 .select_task {
+  padding-left: 8px;
   display: block;
   width: 100%;
-  background: #ffffff;
   border-radius: 5px;
   margin-top: 15px;
+  height: 35px;
+  border: 0;
+  font-family: "Roboto";
+  appearance: none;
+  background: url("./task_image/Vector\ 1.svg") no-repeat right #ffffff;
+  background-position: top 50% right 8px;
+  outline: none;
+  cursor: pointer;
 }
