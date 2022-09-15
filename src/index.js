@@ -2,21 +2,29 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./reset.css";
 import "./index.css";
-import App from "./components/App/App";
+import IndexPage from "./pages/IndexPage/IndexPage";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { TaskListContextProvider } from "./contexts/TaskListContext";
+import { TaskPage } from "./pages/TaskPage/TaskPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <IndexPage />,
+  },
+  {
+    path: "/task",
+    element: <TaskPage />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <TaskListContextProvider>
+      <RouterProvider router={router} />
+    </TaskListContextProvider>
   </React.StrictMode>
 );
 
