@@ -37,16 +37,6 @@
   margin-bottom: 15px;
 }
 
-.list_task_main {
-  background: #ffffff;
-  border-radius: 5px;
-  padding: 8px 7px;
-}
-
-.list_task_main + .list_task_main {
-  margin-top: 15px;
-}
-
 .button_add {
   border: 0px;
   height: 28px;
@@ -83,7 +73,7 @@
   width: 100%;
   padding: 0 8px;
 }
-.list_task_main + .input_Task {
+.task_link + .input_Task {
   margin-top: 15px;
 }
 
@@ -116,4 +106,16 @@
   background-position: top 50% right 8px;
   outline: none;
   cursor: pointer;
+}
+
+.task_link {
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 8px 7px;
+  display: block;
+  text-decoration: none;
+}
+
+.task_link + .task_link {
+  margin-top: 15px;
 }

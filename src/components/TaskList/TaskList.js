@@ -74,7 +74,11 @@ export const TaskList = (props) => {
 
           {props.taskList.map((item) => {
             return (
-              <Link key={item.id} to={`/tasks/${item.id}`}>
+              <Link
+                className={styles.task_link}
+                key={item.id}
+                to={`/tasks/${item.id}`}
+              >
                 <div className={styles.list_task_main}>{item.name}</div>
               </Link>
             );
