@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: <IndexPage />,
   },
   {
-    path: "/task",
+    path: "/tasks/:taskId",
     element: <TaskPage />,
   },
 ]);

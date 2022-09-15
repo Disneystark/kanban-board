@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TaskList.module.css";
 import { LIST_BACKLOG } from "../../const/listTypes";
+import { Link } from "react-router-dom";
 
 export const TaskList = (props) => {
   const [isInputShown, setInputShown] = useState(false);
@@ -73,9 +74,9 @@ export const TaskList = (props) => {
 
           {props.taskList.map((item) => {
             return (
-              <div key={item.id} className={styles.list_task_main}>
-                {item.name}
-              </div>
+              <Link key={item.id} to={`/tasks/${item.id}`}>
+                <div className={styles.list_task_main}>{item.name}</div>
+              </Link>
             );
           })}
 
