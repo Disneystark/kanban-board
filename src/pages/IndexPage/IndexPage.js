@@ -1,9 +1,5 @@
-import Header from "../../components/Header/Header";
-import styles from "./IndexPage.module.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { TaskList } from "../../components/TaskList/TaskList";
-import { Main } from "../../components/Main/Main";
-import { Footer } from "../../components/Footer/Footer";
 import {
   LIST_BACKLOG,
   LIST_FINISHED,
@@ -11,6 +7,7 @@ import {
   LIST_READY,
 } from "../../const/listTypes";
 import { TaskListContext } from "../../contexts/TaskListContext";
+import { PageLayout } from "../../components/PageLayout/PageLayout";
 
 function IndexPage() {
   const { taskList, addNewTask, setTaskListType } = useContext(TaskListContext);
@@ -29,40 +26,36 @@ function IndexPage() {
     (item) => item.listType === LIST_FINISHED
   );
   return (
-    <div className={styles.app}>
-      <Header />
-      <Main>
-        <TaskList
-          title="Backlog"
-          taskList={taskListBacklog}
-          listType={LIST_BACKLOG}
-          addNewTask={addNewTask}
-        />
-        <TaskList
-          title="Ready"
-          taskList={taskListReady}
-          listType={LIST_READY}
-          taskListToAdd={taskListBacklog}
-          setTaskListType={setTaskListType}
-        />
-        <TaskList
-          //<-- пропсы --props!!!
-          title="in Progress"
-          taskList={taskListInProgress}
-          listType={LIST_IN_PROGRESS}
-          taskListToAdd={taskListReady}
-          setTaskListType={setTaskListType}
-        />
-        <TaskList
-          title="Finished"
-          taskList={taskListFinished}
-          listType={LIST_FINISHED}
-          taskListToAdd={taskListInProgress}
-          setTaskListType={setTaskListType}
-        />
-      </Main>
-      <Footer></Footer>
-    </div>
+    <PageLayout>
+      <TaskList
+        title="Backlog"
+        taskList={taskListBacklog}
+        listType={LIST_BACKLOG}
+        addNewTask={addNewTask}
+      />
+      <TaskList
+        title="Ready"
+        taskList={taskListReady}
+        listType={LIST_READY}
+        taskListToAdd={taskListBacklog}
+        setTaskListType={setTaskListType}
+      />
+      <TaskList
+        //<-- пропсы --props!!!
+        title="in Progress"
+        taskList={taskListInProgress}
+        listType={LIST_IN_PROGRESS}
+        taskListToAdd={taskListReady}
+        setTaskListType={setTaskListType}
+      />
+      <TaskList
+        title="Finished"
+        taskList={taskListFinished}
+        listType={LIST_FINISHED}
+        taskListToAdd={taskListInProgress}
+        setTaskListType={setTaskListType}
+      />
+    </PageLayout>
   );
 }
 
