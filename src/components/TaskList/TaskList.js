@@ -15,7 +15,7 @@ export const TaskList = (props) => {
 
   // useEffect(() => {
   // console.log(selectedItem); //для отладки
-  // }, [selectedItem]);// подписка на переменные,при изменении значений.
+  // }, [selectedItemId]);// подписка на переменные,при изменении значений.
 
   useEffect(() => {
     setSelectedItemId(
