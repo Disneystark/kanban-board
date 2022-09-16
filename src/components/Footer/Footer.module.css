@@ -4,3 +4,33 @@
   height: 55px;
   margin: 0 auto;
 }
+.content_footer {
+  display: flex;
+}
+.footer_info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 17px;
+}
+.active_task {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+}
+.active_task + .active_task {
+  padding-left: 36px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+}
+.footer_name_year {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+}

@@ -114,6 +114,7 @@
   padding: 8px 7px;
   display: block;
   text-decoration: none;
+  color: #000000;
 }
 
 .task_link + .task_link {

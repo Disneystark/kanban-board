@@ -1,4 +1,48 @@
 .wrapper {
   background: #fff;
   width: 100%;
+  border-radius: 5px;
+}
+.task_description {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+  padding-top: 2.1875em;
+  padding-left: 30px;
+}
+.heading_link {
+  padding-left: 30px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+  padding-top: 22px;
+}
+.close_description {
+  padding-right: 33px;
+  margin-top: 17px;
+  display: block;
+  float: right;
+  opacity: 0.6;
+}
+.close_description:hover {
+  opacity: 2;
+}
+
+.close_description:before,
+.close_description:after {
+  position: absolute;
+  content: " ";
+  height: 30px;
+  width: 2px;
+  background-color: #333;
+}
+.close_description:before {
+  transform: rotate(45deg);
+}
+.close_description:after {
+  transform: rotate(-45deg);
 }

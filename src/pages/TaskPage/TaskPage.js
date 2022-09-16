@@ -18,10 +18,10 @@ export const TaskPage = () => {
       ) : (
         <div className={styles.wrapper}>
           <Link to="/">
-            <div>X</div>
+            <div className={styles.close_description}></div>
           </Link>
-          <h1>{task.name}</h1>
-          {task.description}
+          <div className={styles.heading_link}>{task.name}</div>
+          <div className={styles.task_description}>{task.description}</div>
         </div>
       )}
     </PageLayout>
