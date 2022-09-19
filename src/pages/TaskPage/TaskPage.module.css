@@ -46,3 +46,12 @@
 .close_description:after {
   transform: rotate(-45deg);
 }
+@media (max-width: 500px) {
+  .task_description {
+    padding-bottom: 30px;
+    padding-right: 30px;
+  }
+  .close_description {
+    padding-left: 3px;
+  }
+}

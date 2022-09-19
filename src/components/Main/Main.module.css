@@ -12,3 +12,13 @@
 .container {
   height: 100%;
 }
+
+@media (max-width: 500px) {
+  .main_content {
+    display: flex;
+    flex-direction: column;
+  }
+  .main_content {
+    padding: 100px 0 32px;
+  }
+}

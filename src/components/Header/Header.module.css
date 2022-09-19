@@ -89,3 +89,16 @@
   font-size: 14px;
   line-height: 16px;
 }
+
+@media (max-width: 500px) {
+  .header {
+    background: #0079bf;
+  }
+  .header_content {
+    background: #0079bf;
+    float: right;
+  }
+  .heading {
+    display: none;
+  }
+}

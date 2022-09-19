@@ -34,3 +34,11 @@
   line-height: 21px;
   color: #ffffff;
 }
+@media (max-width: 500px) {
+  .footer_info {
+    display: none;
+  }
+  .footer {
+    display: none;
+  }
+}

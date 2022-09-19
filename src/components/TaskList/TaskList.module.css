@@ -120,3 +120,11 @@
 .task_link + .task_link {
   margin-top: 15px;
 }
+@media (max-width: 500px) {
+  .task_list {
+    flex: 0 0 0%;
+  }
+  .task_list + .task_list {
+    padding-top: 50px;
+  }
+}
