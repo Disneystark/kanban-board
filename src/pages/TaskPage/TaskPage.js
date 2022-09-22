@@ -61,16 +61,32 @@ export const TaskPage = () => {
             </div>
           ) : (
             <div>
-              <textarea value={editValue} onChange={handleDescriptionChange} />
+              <textarea
+                className={styles.textarea}
+                value={editValue}
+                onChange={handleDescriptionChange}
+              />
             </div>
           )}
 
           {!isEdit ? (
-            <button onClick={handleEditClick}>Редактировать</button>
+            <button className={styles.edit} onClick={handleEditClick}>
+              Редактировать
+            </button>
           ) : (
             <>
-              <button onClick={handleSaveClick}>Сохранить</button>
-              <button onClick={handleCancelClick}>Отмена</button>
+              <button
+                className={styles.button_save_cancel}
+                onClick={handleSaveClick}
+              >
+                Сохранить
+              </button>
+              <button
+                className={styles.button_save_cancel}
+                onClick={handleCancelClick}
+              >
+                Отмена
+              </button>
             </>
           )}
         </div>

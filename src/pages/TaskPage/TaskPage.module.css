@@ -55,3 +55,40 @@
     padding-left: 3px;
   }
 }
+.button_save_cancel {
+  border-radius: 5px;
+  border: 0;
+  height: 28px;
+  background: #ebecf0;
+  color: #5e6c84;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.button_save_cancel + .button_save_cancel {
+  margin-left: 20px;
+}
+.button_save_cancel:hover {
+  color: #0079bf;
+}
+.textarea {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.edit {
+  background: #0079bf;
+  border-radius: 5px;
+  border: 0;
+  height: 28px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin-left: 20px;
+  margin-top: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.edit:hover {
+  background: #0067a3;
+}
