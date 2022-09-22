@@ -22,3 +22,7 @@ input {
   font-weight: 400;
   font-size: 18px;
 }
+em,
+i {
+  font-style: italic;
+}

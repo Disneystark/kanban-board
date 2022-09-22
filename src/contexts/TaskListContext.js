@@ -17,12 +17,14 @@ export const TaskListContextProvider = (props) => {
   const [taskList, setTaskList] = useState([]);
   const [isTaskListLoaded, setTaskListLoaded] = useState(false);
 
-  const setTaskListType = (id, listType) => {
+  const updateTask = (id, taskData) => {
     const task = taskList.find((item) => id === item.id);
     const updatedTask = {
       ...task,
-      listType: listType,
+      ...taskData,
+      id,
     };
+
     const filteredTaskList = taskList.filter((item) => id !== item.id);
 
     const updatedTaskList = [...filteredTaskList, updatedTask];
@@ -30,6 +32,12 @@ export const TaskListContextProvider = (props) => {
     setTaskList(updatedTaskList);
   };
 
+  const setTaskListType = (id, listType) => {
+    updateTask(id, { listType });
+  };
+  const setTaskDescription = (id, description) => {
+    updateTask(id, { description });
+  };
   const addNewTask = (taskName) => {
     const id = generateNewId(taskList);
     const newTask = {
@@ -73,6 +81,7 @@ export const TaskListContextProvider = (props) => {
         taskList,
         addNewTask,
         setTaskListType,
+        setTaskDescription,
       }}
     >
       {props.children}
