@@ -14,10 +14,6 @@ export const TaskList = (props) => {
       : undefined
   );
 
-  // useEffect(() => {
-  // console.log(selectedItem); //для отладки
-  // }, [selectedItemId]);// подписка на переменные,при изменении значений.
-
   useEffect(() => {
     setSelectedItemId(
       props.taskListToAdd && props.taskListToAdd.length > 0

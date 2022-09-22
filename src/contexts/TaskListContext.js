@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import {
-  LIST_BACKLOG,
-  LIST_FINISHED,
-  LIST_IN_PROGRESS,
-  LIST_READY,
-} from "../const/listTypes";
+import React, { useState, useEffect } from "react";
+import { LIST_BACKLOG } from "../const/listTypes";
+import { mockTaskList } from "./mockTaskList";
+
+const TASK_LIST_KEY = "TASK_LIST_KEY";
 
 const generateNewId = (taskList) => {
   const biggestId = taskList.reduce((acc, item) => {
@@ -16,33 +14,8 @@ const generateNewId = (taskList) => {
 export const TaskListContext = React.createContext(null);
 
 export const TaskListContextProvider = (props) => {
-  const [taskList, setTaskList] = useState([
-    {
-      id: 1,
-      name: "Sprint bugfix",
-      description:
-        "Это был темный лес, издали казавшийся непроходимым. Там Пахапиль охотился, глушил рыбу, спал на еловых ветках. Короче – жил, пока русские не выгнали оккупантов. А когда немцы ушли, Пахапиль вернулся. Он появился в Раквере, где советский капитан наградил его медалью. Медаль была украшена четырьмя непонятными словами, фигурой и восклицательным знаком.",
-      listType: LIST_BACKLOG,
-    },
-    {
-      id: 2,
-      name: "Shop page – performance issues",
-      description: "Fix all the bugs",
-      listType: LIST_READY,
-    },
-    {
-      id: 3,
-      name: "User page – performance issues",
-      description: "Fix all the bugs",
-      listType: LIST_IN_PROGRESS,
-    },
-    {
-      id: 4,
-      name: "Main page – performance issues",
-      description: "Fix all the bugs",
-      listType: LIST_FINISHED,
-    },
-  ]);
+  const [taskList, setTaskList] = useState([]);
+  const [isTaskListLoaded, setTaskListLoaded] = useState(false);
 
   const setTaskListType = (id, listType) => {
     const task = taskList.find((item) => id === item.id);
@@ -68,6 +41,31 @@ export const TaskListContextProvider = (props) => {
 
     setTaskList([...taskList, newTask]);
   };
+
+  useEffect(() => {
+    const storedTaskList = localStorage.getItem(TASK_LIST_KEY);
+
+    if (storedTaskList == null) {
+      setTaskList(mockTaskList);
+    } else {
+      try {
+        const parsedTaskList = JSON.parse(storedTaskList);
+        setTaskList(parsedTaskList);
+      } catch (error) {
+        console.error("ошибка парсинга localstorage", error);
+      }
+    }
+
+    setTaskListLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isTaskListLoaded) {
+      return;
+    }
+    const stringifiedTaskList = JSON.stringify(taskList);
+    localStorage.setItem(TASK_LIST_KEY, stringifiedTaskList);
+  }, [taskList]);
 
   return (
     <TaskListContext.Provider
